@@ -9,7 +9,9 @@
 	let interactions: Interaction[] = [];
 
 	async function askQuestion(question: string) {
-		const response = await fetch('http://localhost:3001/?' + new URLSearchParams({ q: question }));
+		let params = new URLSearchParams({ question: question });
+		console.log(params);
+		const response = await fetch('http://localhost:3001/?' + params);
 		const json = await response.json();
 
 		if (response.ok) {
@@ -28,8 +30,10 @@
 </script>
 
 <main>
-	<h1 style="font-size:150%;">FAQ Chatbot</h1>
-	<h2>Powered by OpenAI</h2>
+	<h1 style="font-size:150%;">Yoobi</h1>
+	<p>Yoobi is an artificial intelligencce helper trained to answer<p>
+	<p>whatever questions you may have about universal basic income. Say hi!</p>
+	<br>
 	<hr />
 	<div class="textarea1">
 		<!-- <input placeholder="Your question here..." size="32" id="textinput1"/> -->
