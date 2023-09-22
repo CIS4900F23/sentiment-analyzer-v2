@@ -10,8 +10,9 @@
 	<meta name="description" content="Put your description here.">
 </head>
 <body>
-	<div class="rounded max-w-5xl max-y-2 overflow-hidden shadow-lg bg-slate-100 space-y-2 px-4 py-4">
+	<!-- <div class="rounded max-w-5xl max-y-2 overflow-hidden shadow-lg bg-slate-100 space-y-2 px-4 py-4"> -->
 		{#if post.type == 'tweet'}
+		<div class="rounded max-w-5xl max-y-2 overflow-hidden shadow-lg bg-slate-100 space-y-2 px-4 py-4">
 			<img src="src/images/twitter_icon.png" alt="Logo" class="h-8" width="35" height="30"/>
 			<p>{post.text}</p>
 			<p class="text-left font-bold">Date: {post.date}</p>
@@ -20,7 +21,9 @@
 				<a href="//twitter.com/user/status/{post.id}" target="_blank" rel="noreferrer">Link to post</a
 				>
 			</p>
+		</div>
 		{:else if post.type == 'reddit'}
+		<div class="rounded max-w-5xl max-y-2 overflow-hidden shadow-lg bg-slate-100 space-y-2 px-4 py-4">
 			<img src="src/images/reddit_icon.png" alt="Logo" class="h-8" width="35" height="30"/>
 			<p>{post.text}</p>
 			<p class="text-left font-bold">Date: {post.date}</p>
@@ -32,11 +35,12 @@
 					rel="noreferrer">Link to post</a
 				>
 			</p>
+		</div>
 	
 			<!-- Displays button for showing/hiding comments -->
 			<ShowComments {post} />
 		{:else}
-			<p class="text-left font-bold">No Post Loaded</p>
+			<!-- <p class="text-left font-bold">No Post Loaded</p> -->
 		{/if}
-	</div>
+	<!-- </div> -->
 </body>

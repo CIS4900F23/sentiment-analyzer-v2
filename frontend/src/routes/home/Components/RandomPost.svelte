@@ -4,6 +4,7 @@
 	import ShowPlot from '../../../Components/show_plot.svelte';
 	import type { Comment, Plot, Post } from '../../../types';
 	import type { Writable } from 'svelte/store';
+	import { onMount } from 'svelte';
 
 	export let post_store: Writable<Post>;
 	export let plot_store: Writable<Plot>;
@@ -21,6 +22,10 @@
 	//Subscribe to sharedPlot store to update cur_plot whenever a new plot is stored in sharedPost
 	plot_store.subscribe((data) => {
 		cur_plot = data;
+	});
+
+	onMount(async () => {
+		getRandomPost();
 	});
 
 	// Loads a random tweet into page memory to be accesed under the variable cur_tweet

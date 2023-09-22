@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	let totalPosts = 0;
+	let totalPosts = -1;
 
 	export let collection = 'all';
 	let sizeEndpoint: string;
@@ -19,11 +19,14 @@
 </script>
 
 <main>
-	{#if collection == 'all'}
-		<p class="px-2">Total Posts: {totalPosts}</p>
-	{:else if collection == 'twitter'}
-		<p class="px-2">Total Tweets: {totalPosts}</p>
-	{:else if collection == 'reddit'}
-		<p class="px-2">Total Reddit Posts: {totalPosts}</p>
+	{#if totalPosts != -1}
+		{#if collection == 'all'}
+			<p class="px-2">Total Posts: {totalPosts}</p>
+		{:else if collection == 'twitter'}
+			<p class="px-2">Total Tweets: {totalPosts}</p>
+		{:else if collection == 'reddit'}
+			<p class="px-2">Total Reddit Posts: {totalPosts}</p>
+		{/if}
 	{/if}
+
 </main>
