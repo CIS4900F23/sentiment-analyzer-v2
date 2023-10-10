@@ -10,8 +10,20 @@
 
 	async function askQuestion(question: string) {
 		let params = new URLSearchParams({ question: question });
-		console.log(params);
-		const response = await fetch('http://localhost:3001/?' + params);
+		let url = 'http://localhost:3001/?';
+
+		const response = await fetch(url + params, {
+			method: "GET", 
+			mode: "cors", 
+			cache: "no-cache", 
+			credentials: "same-origin", 
+			headers: {
+			"Content-Type": "application/json",
+			},
+			redirect: "follow", 
+			referrerPolicy: "no-referrer", 
+		});
+
 		const json = await response.json();
 
 		if (response.ok) {
