@@ -6,10 +6,6 @@ services:
     image: mongo:6
     volumes:
       - data:/data/db
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=example
-      - MONGO_INITDB_DATABASE=task-management
     networks:
       - b1
 
@@ -19,20 +15,20 @@ services:
       context: ./backend
     image: loganhagen/sv2-backend
     command: [ "./initBackend.sh" ]
+    stdin_open: true
+    tty: true
     volumes:
       - ./backend:/app/backend
+    networks:
+      - b1
+      - f1
     environment:
       - MONGO_USERNAME=root
       - MONGO_PASSWORD=example
       - MONGO_HOSTNAME=mymongodb
       - MONGO_PORT=27017
-    stdin_open: true
-    tty: true
     depends_on:
       - mymongodb
-    networks:
-      - b1
-      - f1
 
   yoobi:
     container_name: yoobi
@@ -42,34 +38,28 @@ services:
     networks:
       - f2
 
-  # nhttpd:
-  #   build:
-  #     context: ../networkTest/nhttpd
-  #   stdin_open: true
-  #   tty: true
-
   frontend:
     container_name: frontend
     build:
       context: ./frontend
     image: loganhagen/sv2-frontend
     command: [ "npm", "run", "dev" ]
+    stdin_open: true
+    tty: true
     ports:
       - "3000:3000"
     volumes:
       - ./frontend:/app/frontend
+    networks:
+      - f1
+      - f2
     environment:
       - BACKEND_PORT=8080
       - BACKEND_HOST=http://backend
       - YOOBI_PORT=3001
       - YOOBI_HOST=http://yoobi
-    stdin_open: true
-    tty: true
     depends_on:
       - backend
-    networks:
-      - f1
-      - f2
 
 networks:
   f1:
