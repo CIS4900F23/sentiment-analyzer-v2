@@ -9,8 +9,8 @@
 	let interactions: Interaction[] = [];
 
 	async function askQuestion(question: string) {
-		let params = new URLSearchParams({ question: question });
 		let url = '/ask/?';
+		let params = new URLSearchParams({ question: question });
 
 		const response = await fetch(url + params, {
 			method: "GET", 

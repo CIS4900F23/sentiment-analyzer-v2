@@ -11,6 +11,8 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=example
       - MONGO_INITDB_DATABASE=task-management
+    networks:
+      - b1
 
   backend:
     build:
@@ -29,6 +31,9 @@ services:
     tty: true
     depends_on:
       - mymongodb
+    networks:
+      - b1
+      - f1
 
   yoobi:
     image: loganhagen/yoobi
@@ -36,12 +41,14 @@ services:
       - "3001:3001"
     env_file:
       - ../yoobi/.env
+    networks:
+      - f2
 
-  nhttpd:
-    build:
-      context: ../networkTest/nhttpd
-    stdin_open: true
-    tty: true
+  # nhttpd:
+  #   build:
+  #     context: ../networkTest/nhttpd
+  #   stdin_open: true
+  #   tty: true
 
   frontend:
     build:
@@ -60,6 +67,17 @@ services:
     tty: true
     depends_on:
       - backend
+    networks:
+      - f1
+      - f2
+
+networks:
+  f1:
+    name: f1
+  f2:
+    name: f2
+  b1:
+    name: b1
 
 volumes:
   data:
