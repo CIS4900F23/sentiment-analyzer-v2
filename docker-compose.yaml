@@ -4,8 +4,6 @@ services:
   mymongodb:
     container_name: db
     image: mongo:6
-    ports:
-      - "27017:27017"
     volumes:
       - data:/data/db
     environment:
@@ -21,8 +19,6 @@ services:
       context: ./backend
     image: loganhagen/sv2-backend
     command: [ "./initBackend.sh" ]
-    ports:
-      - "8080:8080"
     volumes:
       - ./backend:/app/backend
     environment:
@@ -41,8 +37,6 @@ services:
   yoobi:
     container_name: yoobi
     image: loganhagen/yoobi
-    ports:
-      - "3001:3001"
     env_file:
       - ../yoobi/.env
     networks:
