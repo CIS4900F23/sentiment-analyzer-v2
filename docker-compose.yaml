@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
   mymongodb:
+    container_name: db
     image: mongo:6
     ports:
       - "27017:27017"
@@ -15,8 +16,10 @@ services:
       - b1
 
   backend:
+    container_name: backend
     build:
       context: ./backend
+    image: loganhagen/sv2-backend
     command: [ "./initBackend.sh" ]
     ports:
       - "8080:8080"
@@ -36,6 +39,7 @@ services:
       - f1
 
   yoobi:
+    container_name: yoobi
     image: loganhagen/yoobi
     ports:
       - "3001:3001"
@@ -51,8 +55,10 @@ services:
   #   tty: true
 
   frontend:
+    container_name: frontend
     build:
       context: ./frontend
+    image: loganhagen/sv2-frontend
     command: [ "npm", "run", "dev" ]
     ports:
       - "3000:3000"
