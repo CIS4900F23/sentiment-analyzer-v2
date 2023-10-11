@@ -1,8 +1,9 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import type { UserConfig } from 'vite';
 
-const { PUBLIC_SERVER_PORT, PUBLIC_SERVER_HOST } = process.env;
-const proxyTarget = `${PUBLIC_SERVER_HOST}:${PUBLIC_SERVER_PORT}`;
+const { BACKEND_PORT, BACKEND_HOST, YOOBI_PORT, YOOBI_HOST } = process.env;
+const backendProxyTarget = `${BACKEND_HOST}:${BACKEND_PORT}`;
+const yoobiProxyTarget = `${YOOBI_HOST}:${YOOBI_PORT}`;
 
 const config: UserConfig = {
 	plugins: [sveltekit()],
@@ -15,7 +16,11 @@ const config: UserConfig = {
 	server: {
 		proxy: {
 			'/api': {
-				target: proxyTarget,
+				target: backendProxyTarget,
+				changeOrigin: true
+			},
+			'/ask': {
+				target: yoobiProxyTarget,
 				changeOrigin: true
 			}
 		},

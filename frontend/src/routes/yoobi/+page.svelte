@@ -10,7 +10,7 @@
 
 	async function askQuestion(question: string) {
 		let params = new URLSearchParams({ question: question });
-		let url = 'http://localhost:3001/?';
+		let url = '/ask/?';
 
 		const response = await fetch(url + params, {
 			method: "GET", 
