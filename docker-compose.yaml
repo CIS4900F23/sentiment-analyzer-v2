@@ -13,7 +13,7 @@ services:
     container_name: backend
     build:
       context: ./backend
-    image: loganhagen/sv2-backend
+    image: loganhagen/sv2-backend:latest
     command: [ "./initBackend.sh" ]
     stdin_open: true
     tty: true
@@ -32,7 +32,7 @@ services:
 
   yoobi:
     container_name: yoobi
-    image: loganhagen/yoobi
+    image: loganhagen/yoobi:latest
     env_file:
       - ../yoobi/.env
     networks:
@@ -42,7 +42,7 @@ services:
     container_name: frontend
     build:
       context: ./frontend
-    image: loganhagen/sv2-frontend
+    image: loganhagen/sv2-frontend:latest
     command: [ "npm", "run", "dev" ]
     stdin_open: true
     tty: true
