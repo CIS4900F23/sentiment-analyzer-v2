@@ -6,8 +6,6 @@ services:
     image: mongo:6
     volumes:
       - data:/data/db
-    networks:
-      - b1
 
   backend:
     container_name: backend
@@ -19,9 +17,6 @@ services:
     tty: true
     volumes:
       - ./backend:/app/backend
-    networks:
-      - b1
-      - f1
     environment:
       - MONGO_USERNAME=root
       - MONGO_PASSWORD=example
@@ -35,8 +30,6 @@ services:
     image: loganhagen/yoobi:latest
     env_file:
       - ../yoobi/.env
-    networks:
-      - f2
 
   frontend:
     container_name: frontend
@@ -50,9 +43,6 @@ services:
       - "3000:3000"
     volumes:
       - ./frontend:/app/frontend
-    networks:
-      - f1
-      - f2
     environment:
       - BACKEND_PORT=8080
       - BACKEND_HOST=http://backend
@@ -60,14 +50,6 @@ services:
       - YOOBI_HOST=http://yoobi
     depends_on:
       - backend
-
-networks:
-  f1:
-    name: f1
-  f2:
-    name: f2
-  b1:
-    name: b1
 
 volumes:
   data:
