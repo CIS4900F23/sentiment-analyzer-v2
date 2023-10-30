@@ -39,6 +39,8 @@ services:
       - "3000:3000"
     volumes:
       - ./yoobi-frontend:/app/frontend 
+    env_file:
+      - ./yoobi-frontend/.env
     stdin_open: true
     tty: true
 
