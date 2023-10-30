@@ -7,30 +7,11 @@ services:
     volumes:
       - data:/data/db
 
-  # backend:
-  #   container_name: backend
-  #   build:
-  #     context: ./backend
-  #   command: [ "./initBackend.sh" ]
-  #   stdin_open: true
-  #   tty: true
-  #   volumes:
-  #     - ./backend:/app/backend
-  #   environment:
-  #     - MONGO_USERNAME=root
-  #     - MONGO_PASSWORD=example
-  #     - MONGO_HOSTNAME=db
-  #     - MONGO_PORT=27017
-  #   depends_on:
-  #     - db
-
   backend:
     container_name: backend
     image: loganhagen/yoobi-posts:latest
     env_file:
       - yoobi-posts/.env
-    depends_on:
-      - db
 
   yoobi:
     container_name: yoobi
@@ -43,20 +24,6 @@ services:
     image: loganhagen/yoobi-frontend:latest
     ports: 
       - "3000:3000"
-    env_file:
-      - frontend/.env
-
-  # For testing without pushing images
-  # frontend:
-  #   container_name: frontend
-  #   build:
-  #     context: ./frontend
-  #   ports:
-  #     - "3000:3000"
-  #   volumes:
-  #     - ./frontend:/app/frontend
-  #   env_file:
-  #     - frontend/.env
 
 volumes:
   data:

@@ -4,3 +4,6 @@
 [submodule "yoobi-frontend"]
 	path = yoobi-frontend
 	url = https://github.com/CIS4900F23/yoobi-frontend
+[submodule "yoobi-posts"]
+	path = yoobi-posts
+	url = https://github.com/CIS4900F23/yoobi-posts
