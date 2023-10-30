@@ -7,23 +7,22 @@ services:
 # For a Docker Hub-exclusive workflow #
 #######################################
 
-  db:
-    container_name: db
-    image: mongo:6
-    volumes:
-      - data:/data/db
+  # db:
+  #   image: loganhagen/yoobi-db:latest
+  #   volumes:
+  #     - data:/data/db
 
-  # backend:
-  #   container_name: backend
+  # posts:
+  #   container_name: posts
   #   image: loganhagen/yoobi-posts:latest
   #   env_file:
-  #     - yoobi-posts/.env
+  #     - ./yoobi-posts/.env
 
-  # yoobi:
-  #   container_name: yoobi
-  #   image: loganhagen/yoobi:latest
+  # yoobi-bot:
+  #   container_name: yoobi-bot
+  #   image: loganhagen/yoobi-bot:latest
   #   env_file:
-  #     - yoobi/.env
+  #     - ./yoobi-bot/.env
 
   # frontend:
   #   container_name: frontend
@@ -36,42 +35,45 @@ services:
 # For using local build contexts #
 ##################################
 
-  # yoobi:
-  #   container_name: yoobi
-  #   build:
-  #     context: ./yoobi
-  #   volumes:
-  #     - ./yoobi:/app/yoobi
-  #   env_file:
-  #     - ./yoobi/.env
-  #   stdin_open: true
-  #   tty: true
+  db:
+    container_name: db
+    build:  
+      context: ./yoobi-db
+    volumes:
+      - data:/data/db
 
-  # backend:
-  #   container_name: backend
-  #   build:
-  #     context: ./yoobi-posts
-  #   command: ["./initBackend.sh"]
-  #   ports:
-  #     - "8080:8080"
-  #   volumes:
-  #     - ./yoobi-posts:/app/posts 
-  #   env_file:
-  #     - ./yoobi-posts/.env
-  #   stdin_open: true
-  #   tty: true
+  yoobi-bot:
+    container_name: yoobi-bot
+    build:
+      context: ./yoobi-bot
+    volumes:
+      - ./yoobi-bot:/app/yoobi-bot
+    env_file:
+      - ./yoobi-bot/.env
 
-  # frontend:
-  #   container_name: frontend
-  #   build:
-  #     context: ./yoobi-frontend
-  #   command: ["npm", "run", "dev"]
-  #   ports:
-  #     - "3000:3000"
-  #   volumes:
-  #     - ./yoobi-frontend:/app/frontend 
-  #   stdin_open: true
-  #   tty: true
+  posts:
+    container_name: posts
+    build:
+      context: ./yoobi-posts
+    command: ["./initBackend.sh"]
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./yoobi-posts:/app/posts 
+    env_file:
+      - ./yoobi-posts/.env
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./yoobi-frontend
+    command: ["npm", "run", "dev"]
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./yoobi-frontend:/app/frontend 
+    stdin_open: true
+    tty: true
 
 ##################################
 

@@ -1,6 +1,9 @@
-[submodule "yoobi"]
-	path = yoobi
-	url = https://github.com/CIS4900F23/yoobi
+[submodule "yoobi-db"]
+	path = yoobi-db
+	url = https://github.com/CIS4900F23/yoobi-db
+[submodule "yoobi-bot"]
+	path = yoobi-bot
+	url = https://github.com/CIS4900F23/yoobi-bot
 [submodule "yoobi-frontend"]
 	path = yoobi-frontend
 	url = https://github.com/CIS4900F23/yoobi-frontend
