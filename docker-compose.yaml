@@ -1,29 +1,79 @@
 version: "3.8"
 
 services:
+
+
+#######################################
+# For a Docker Hub-exclusive workflow #
+#######################################
+
   db:
     container_name: db
     image: mongo:6
     volumes:
       - data:/data/db
 
-  backend:
-    container_name: backend
-    image: loganhagen/yoobi-posts:latest
-    env_file:
-      - yoobi-posts/.env
+  # backend:
+  #   container_name: backend
+  #   image: loganhagen/yoobi-posts:latest
+  #   env_file:
+  #     - yoobi-posts/.env
 
-  yoobi:
-    container_name: yoobi
-    image: loganhagen/yoobi:latest
-    env_file:
-      - yoobi/.env
+  # yoobi:
+  #   container_name: yoobi
+  #   image: loganhagen/yoobi:latest
+  #   env_file:
+  #     - yoobi/.env
 
-  frontend:
-    container_name: frontend
-    image: loganhagen/yoobi-frontend:latest
-    ports: 
-      - "3000:3000"
+  # frontend:
+  #   container_name: frontend
+  #   image: loganhagen/yoobi-frontend:latest
+  #   ports: 
+  #     - "3000:3000"
+
+
+##################################
+# For using local build contexts #
+##################################
+
+  # yoobi:
+  #   container_name: yoobi
+  #   build:
+  #     context: ./yoobi
+  #   volumes:
+  #     - ./yoobi:/app/yoobi
+  #   env_file:
+  #     - ./yoobi/.env
+  #   stdin_open: true
+  #   tty: true
+
+  # backend:
+  #   container_name: backend
+  #   build:
+  #     context: ./yoobi-posts
+  #   command: ["./initBackend.sh"]
+  #   ports:
+  #     - "8080:8080"
+  #   volumes:
+  #     - ./yoobi-posts:/app/posts 
+  #   env_file:
+  #     - ./yoobi-posts/.env
+  #   stdin_open: true
+  #   tty: true
+
+  # frontend:
+  #   container_name: frontend
+  #   build:
+  #     context: ./yoobi-frontend
+  #   command: ["npm", "run", "dev"]
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ./yoobi-frontend:/app/frontend 
+  #   stdin_open: true
+  #   tty: true
+
+##################################
 
 volumes:
   data:
