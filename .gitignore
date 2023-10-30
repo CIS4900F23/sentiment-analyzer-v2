@@ -296,8 +296,3 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
-# sa-v2 project stuff
-frontend/
-backend/ 
-mongodb/
