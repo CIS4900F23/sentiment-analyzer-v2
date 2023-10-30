@@ -2,50 +2,19 @@ version: "3.8"
 
 services:
 
-
-#######################################
-# For a Docker Hub-exclusive workflow #
-#######################################
-
-  # db:
-  #   image: loganhagen/yoobi-db:latest
-  #   volumes:
-  #     - data:/data/db
-
-  # posts:
-  #   container_name: posts
-  #   image: loganhagen/yoobi-posts:latest
-  #   env_file:
-  #     - ./yoobi-posts/.env
-
-  # yoobi-bot:
-  #   container_name: yoobi-bot
-  #   image: loganhagen/yoobi-bot:latest
-  #   env_file:
-  #     - ./yoobi-bot/.env
-
-  # frontend:
-  #   container_name: frontend
-  #   image: loganhagen/yoobi-frontend:latest
-  #   ports: 
-  #     - "3000:3000"
-
-
-##################################
-# For using local build contexts #
-##################################
-
   db:
     container_name: db
-    build:  
-      context: ./yoobi-db
+    # build:  
+    #   context: ./yoobi-db
+    image: loganhagen/yoobi-db:latest
     volumes:
       - data:/data/db
 
   yoobi-bot:
     container_name: yoobi-bot
-    build:
-      context: ./yoobi-bot
+    # build:
+    #   context: ./yoobi-bot
+    image: loganhagen/yoobi-bot:latest
     volumes:
       - ./yoobi-bot:/app/yoobi-bot
     env_file:
@@ -53,11 +22,9 @@ services:
 
   posts:
     container_name: posts
-    build:
-      context: ./yoobi-posts
-    command: ["./initBackend.sh"]
-    ports:
-      - "8080:8080"
+    # build:
+    #   context: ./yoobi-posts
+    image: loganhagen/yoobi-posts:latest
     volumes:
       - ./yoobi-posts:/app/posts 
     env_file:
@@ -65,17 +32,15 @@ services:
 
   frontend:
     container_name: frontend
-    build:
-      context: ./yoobi-frontend
-    command: ["npm", "run", "dev"]
+    # build:
+    #   context: ./yoobi-frontend
+    image: loganhagen/yoobi-frontend:latest
     ports:
       - "3000:3000"
     volumes:
       - ./yoobi-frontend:/app/frontend 
     stdin_open: true
     tty: true
-
-##################################
 
 volumes:
   data:
