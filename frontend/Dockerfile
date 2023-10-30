@@ -1,11 +1,10 @@
-FROM node:16-slim
+FROM node:latest
 
 # Do not set NODE_ENV in Dockerfile as vite/react-scripts handles it internally
 ARG PORT=3000
 ENV PORT $PORT
 
-# Install latest npm for all security fixes
-RUN npm i npm@9 -g
+
 
 # It is better to install the dependencies first in a 
 # different directory and point the node_modules/.bin to the PATH
@@ -13,6 +12,9 @@ WORKDIR /app
 
 # Copy package.json and package-lock.json as they are the least likely to change
 COPY package.json package-lock.json ./
+
+# Install latest npm for all security fixes
+RUN npm i -g npm@latest
 
 # Install dependencies using npm ci. ci is a better practice as it removes the node_modules
 # and reinstalls the dependencies from scratch.
