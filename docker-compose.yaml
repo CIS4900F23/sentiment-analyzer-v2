@@ -7,20 +7,28 @@ services:
     volumes:
       - data:/data/db
 
+  # backend:
+  #   container_name: backend
+  #   build:
+  #     context: ./backend
+  #   command: [ "./initBackend.sh" ]
+  #   stdin_open: true
+  #   tty: true
+  #   volumes:
+  #     - ./backend:/app/backend
+  #   environment:
+  #     - MONGO_USERNAME=root
+  #     - MONGO_PASSWORD=example
+  #     - MONGO_HOSTNAME=db
+  #     - MONGO_PORT=27017
+  #   depends_on:
+  #     - db
+
   backend:
     container_name: backend
-    build:
-      context: ./backend
-    command: [ "./initBackend.sh" ]
-    stdin_open: true
-    tty: true
-    volumes:
-      - ./backend:/app/backend
-    environment:
-      - MONGO_USERNAME=root
-      - MONGO_PASSWORD=example
-      - MONGO_HOSTNAME=db
-      - MONGO_PORT=27017
+    image: loganhagen/yoobi-posts:latest
+    env_file:
+      - yoobi-posts/.env
     depends_on:
       - db
 
