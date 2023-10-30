@@ -30,25 +30,25 @@ services:
     env_file:
       - ../yoobi/.env
 
-  frontend:
-    container_name: frontend
-    image: loganhagen/sa2-frontend:latest
-    ports: 
-      - "3000:3000"
-    env_file:
-      - frontend/.env
-
-  # For testing without pushing images
   # frontend:
   #   container_name: frontend
-  #   build:
-  #     context: ./frontend
-  #   ports:
+  #   image: loganhagen/sa2-frontend:latest
+  #   ports: 
   #     - "3000:3000"
-  #   volumes:
-  #     - ./frontend:/app/frontend
   #   env_file:
   #     - frontend/.env
+
+  # For testing without pushing images
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app/frontend
+    env_file:
+      - frontend/.env
 
 volumes:
   data:
