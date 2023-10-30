@@ -28,7 +28,7 @@ services:
     container_name: yoobi
     image: loganhagen/yoobi:latest
     env_file:
-      - ../yoobi/.env
+      - yoobi/.env
 
   # frontend:
   #   container_name: frontend
