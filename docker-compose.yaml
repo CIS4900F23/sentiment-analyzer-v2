@@ -2,13 +2,15 @@ version: "3.8"
 
 services:
 
-  db:
-    container_name: db
+  yoobi-db:
+    container_name: yoobi-db
     # build:  
     #   context: ./yoobi-db
     image: loganhagen/yoobi-db:latest
     volumes:
       - data:/data/db
+    env_file:
+      - ./yoobi-db/.env
 
   yoobi-bot:
     container_name: yoobi-bot
@@ -20,8 +22,8 @@ services:
     env_file:
       - ./yoobi-bot/.env
 
-  posts:
-    container_name: posts
+  yoobi-posts:
+    container_name: yoobi-posts
     # build:
     #   context: ./yoobi-posts
     image: loganhagen/yoobi-posts:latest
@@ -30,8 +32,8 @@ services:
     env_file:
       - ./yoobi-posts/.env
 
-  frontend:
-    container_name: frontend
+  yoobi-frontend:
+    container_name: yoobi-frontend
     # build:
     #   context: ./yoobi-frontend
     image: loganhagen/yoobi-frontend:latest
