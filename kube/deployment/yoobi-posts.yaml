@@ -17,9 +17,9 @@ spec:
       containers:
       - name: yoobi-posts
         image: loganhagen/yoobi-posts:latest
-        resources:
-          limits:
-            memory: "500Mi"
-            cpu: "500m"
+        # resources:
+        #   limits:
+        #     memory: "500Mi"
+        #     cpu: "500m"
         ports:
         - containerPort: 8080

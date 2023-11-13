@@ -17,10 +17,10 @@ spec:
       containers:
       - name: yoobi-bot
         image: loganhagen/yoobi-bot:latest
-        resources:
-          limits:
-            memory: "500Mi"
-            cpu: "500m"
+        # resources:
+        #   limits:
+        #     memory: "500Mi"
+        #     cpu: "500m"
         ports:
         - containerPort: 3001
         env:
