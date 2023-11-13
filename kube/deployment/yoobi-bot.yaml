@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yoobi-bot
+  labels:
+    app: yoobi-bot
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: yoobi-bot
+  template:
+    metadata:
+      labels:
+        app: yoobi-bot
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: yoobi-bot
+        image: loganhagen/yoobi-bot:latest
+        imagePullPolicy: "Always"
+        ports:
+        - containerPort: 3001
+        env:
+          - name: OPEN_AI
+            value: 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
+

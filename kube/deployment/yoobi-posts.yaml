@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yoobi-posts
+  labels:
+    app: yoobi-posts
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: yoobi-posts
+  template:
+    metadata:
+      labels:
+        app: yoobi-posts
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: yoobi-posts
+        image: loganhagen/yoobi-posts:latest
+        imagePullPolicy: "Always"
+        ports:
+        - containerPort: 8080
