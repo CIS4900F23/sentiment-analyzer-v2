@@ -14,11 +14,13 @@ spec:
       labels:
         app: yoobi-bot
     spec:
-      terminationGracePeriodSeconds: 30
       containers:
       - name: yoobi-bot
         image: loganhagen/yoobi-bot:latest
-        imagePullPolicy: "Always"
+        resources:
+          limits:
+            memory: "500Mi"
+            cpu: "500m"
         ports:
         - containerPort: 3001
         env:

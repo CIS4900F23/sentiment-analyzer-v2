@@ -14,10 +14,12 @@ spec:
       labels:
         app: yoobi-posts
     spec:
-      terminationGracePeriodSeconds: 30
       containers:
       - name: yoobi-posts
         image: loganhagen/yoobi-posts:latest
-        imagePullPolicy: "Always"
+        resources:
+          limits:
+            memory: "500Mi"
+            cpu: "500m"
         ports:
         - containerPort: 8080

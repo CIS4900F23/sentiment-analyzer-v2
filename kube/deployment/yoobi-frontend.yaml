@@ -14,11 +14,13 @@ spec:
       labels:
         app: yoobi-frontend
     spec:
-      terminationGracePeriodSeconds: 30
       containers:
       - name: yoobi-frontend
         image: loganhagen/yoobi-frontend:latest
-        imagePullPolicy: "Always"
+        # resources:
+        #   limits:
+        #     memory: "750Mi"
+        #     cpu: "500m"
         ports:
         - containerPort: 3000
         env:
