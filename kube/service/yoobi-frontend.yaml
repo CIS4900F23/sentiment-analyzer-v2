@@ -12,3 +12,39 @@ spec:
     - protocol: TCP
       port: 3000
       targetPort: 3000
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yoobi-frontend
+  labels:
+    app: yoobi-frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: yoobi-frontend
+  template:
+    metadata:
+      labels:
+        app: yoobi-frontend
+    spec:
+      containers:
+        - name: yoobi-frontend
+          image: loganhagen/yoobi-frontend:latest
+          # resources:
+          #   limits:
+          #     memory: "500Mi"
+          #     cpu: "500m"
+          ports:
+            - containerPort: 3000
+          env:
+            - name: YOOBI_HOST
+              value: http://yoobi-bot
+            - name: YOOBI_PORT
+              value: "3001"
+            - name: POSTS_HOST
+              value: http://yoobi-posts
+            - name: POSTS_PORT
+              value: "8080"

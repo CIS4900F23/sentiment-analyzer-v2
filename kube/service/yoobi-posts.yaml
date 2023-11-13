@@ -12,3 +12,30 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yoobi-posts
+  labels:
+    app: yoobi-posts
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: yoobi-posts
+  template:
+    metadata:
+      labels:
+        app: yoobi-posts
+    spec:
+      containers:
+        - name: yoobi-posts
+          image: loganhagen/yoobi-posts:latest
+          # resources:
+          #   limits:
+          #     memory: "500Mi"
+          #     cpu: "500m"
+          ports:
+            - containerPort: 8080
