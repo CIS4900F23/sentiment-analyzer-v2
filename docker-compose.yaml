@@ -16,7 +16,7 @@ services:
     container_name: yoobi-bot
     # build:
     #   context: ./yoobi-bot
-    image: loganhagen/yoobi-bot:latest
+    image: loganhagen/yoobi-bot:alpine
     volumes:
       - ./yoobi-bot:/app/yoobi-bot
     env_file:
