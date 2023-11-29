@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: yoobi-db
   labels:
-    app: yoobi-bot
+    app: yoobi-db
 spec:
   type: ClusterIP
   selector:
