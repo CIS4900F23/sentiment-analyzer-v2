@@ -4,19 +4,17 @@ services:
 
   yoobi-db:
     container_name: yoobi-db
-    # build:  
-    #   context: ./yoobi-db
-    image: loganhagen/yoobi-db:latest
+    build:  
+      context: ./yoobi-db
+    # image: loganhagen/yoobi-db:latest
     volumes:
       - data:/data/db
-    env_file:
-      - ./yoobi-db/.env
 
   yoobi-bot:
     container_name: yoobi-bot
-    # build:
-    #   context: ./yoobi-bot
-    image: loganhagen/yoobi-bot:alpine
+    build:
+      context: ./yoobi-bot
+    # image: loganhagen/yoobi-bot:alpine
     volumes:
       - ./yoobi-bot:/app/yoobi-bot
     env_file:
@@ -24,25 +22,25 @@ services:
 
   yoobi-posts:
     container_name: yoobi-posts
-    # build:
-    #   context: ./yoobi-posts
-    image: loganhagen/yoobi-posts:latest
+    build:
+      context: ./yoobi-posts
+    # image: loganhagen/yoobi-posts:latest
     volumes:
       - ./yoobi-posts:/app/posts 
-    env_file:
-      - ./yoobi-posts/.env
+    # env_file:
+    #   - ./yoobi-posts/.env
 
   yoobi-frontend:
     container_name: yoobi-frontend
-    # build:
-    #   context: ./yoobi-frontend
-    image: loganhagen/yoobi-frontend:latest
+    build:
+      context: ./yoobi-frontend
+    # image: loganhagen/yoobi-frontend:latest
     ports:
       - "3000:3000"
     volumes:
       - ./yoobi-frontend:/app/frontend 
-    env_file:
-      - ./yoobi-frontend/.env
+    # env_file:
+    #   - ./yoobi-frontend/.env
     stdin_open: true
     tty: true
 
