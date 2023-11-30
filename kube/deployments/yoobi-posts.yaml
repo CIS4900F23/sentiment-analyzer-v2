@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: yoobi-posts
-          image: loganhagen/yoobi-posts:latest
+          image: loganhagen/yoobi-posts:v1
           # resources:
           #   limits:
           #     memory: "500Mi"

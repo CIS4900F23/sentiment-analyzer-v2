@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: yoobi-frontend
-          image: loganhagen/yoobi-frontend:latest
+          image: loganhagen/yoobi-frontend:v1
           # resources:
           #   limits:
           #     memory: "500Mi"

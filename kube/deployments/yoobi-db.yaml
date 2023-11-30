@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: yoobi-db
-          image: mongo
+          image: loganhagen/yoobi-db:v1
           # resources:
           #   limits:
           #     memory: "500Mi"
