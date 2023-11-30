@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: yoobi-bot
-          image: loganhagen/yoobi-bot:v1
+          image: loganhagen/yoobi-bot:v2
           # resources:
           #   limits:
           #     memory: "500Mi"
