@@ -17,6 +17,7 @@ spec:
       containers:
         - name: yoobi-db
           image: loganhagen/yoobi-db:v1
+          imagePullPolicy: Always
           # resources:
           #   limits:
           #     memory: "500Mi"

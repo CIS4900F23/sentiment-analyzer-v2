@@ -17,6 +17,7 @@ spec:
       containers:
         - name: yoobi-posts
           image: loganhagen/yoobi-posts:v1
+          imagePullPolicy: Always
           # resources:
           #   limits:
           #     memory: "500Mi"

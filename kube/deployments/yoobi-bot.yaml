@@ -17,6 +17,7 @@ spec:
       containers:
         - name: yoobi-bot
           image: loganhagen/yoobi-bot:v2
+          imagePullPolicy: Always
           # resources:
           #   limits:
           #     memory: "500Mi"
